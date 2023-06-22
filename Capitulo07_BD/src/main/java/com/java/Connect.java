@@ -5,9 +5,9 @@ import java.util.*;
 public class Connect{
 
     // VARIÁVEIS DE CONEXÃO
-    private static final String DB_URL = "jdbc:mysql://localhost/cap07_bd";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "root";
+    private static final String DB_URL = "jdbc:mysql://localhost/database";
+    private static final String DB_USER = "";
+    private static final String DB_PASSWORD = "";
 
     //OPERAÇÕES
     private static final int INSERT_OPERATION = 1;
