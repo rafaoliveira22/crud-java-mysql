@@ -3,11 +3,10 @@ import java.sql.*;
 import java.util.*;
 
 public class Connect{
-
     // VARIÁVEIS DE CONEXÃO
-    private static final String DB_URL = "jdbc:mysql://localhost/database";
-    private static final String DB_USER = "";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_URL = "jdbc:mysql://localhost/cap07_bd";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "root";
 
     //OPERAÇÕES
     private static final int INSERT_OPERATION = 1;
@@ -25,22 +24,27 @@ public class Connect{
         String query = "";
         PreparedStatement pst = null;
 
-        Map<String, String> fields = new LinkedHashMap<>(){{
+        Map<String, Object> fields = new LinkedHashMap<>(){{
             put("cpf", "");
             put("name", "");
             put("stack", "");
+            put("age", "");
         }};
 
-        for (Map.Entry<String, String> entry : fields.entrySet()) {
+        for (Map.Entry<String, Object> entry : fields.entrySet()) {
             System.out.println(entry.getKey().toUpperCase() + ": "); fields.replace(entry.getKey(), sc.nextLine());
         }//for input
 
-        query = "INSERT INTO tb_users (tb_users_cpf, tb_users_stack, tb_users_name) VALUES(?, ?, ?)";
+        query = "INSERT INTO tb_users (tb_users_cpf, tb_users_name, tb_users_stack, tb_users_age) VALUES(?, ?, ?, ?)";
         pst = con.prepareStatement(query);
 
+        Object value_field;
         Integer index = 1;
-        for (Map.Entry<String, String> entry : fields.entrySet()) {
-            pst.setString(index, entry.getValue());
+        for (Map.Entry<String, Object> entry : fields.entrySet()) {
+            value_field = fields.get(entry.getKey());
+            if(value_field instanceof String) pst.setString(index, (String)entry.getValue());
+            else if(value_field instanceof Integer) pst.setInt(index, (Integer)entry.getValue());
+            else if(value_field instanceof Double) pst.setDouble(index, (Double)entry.getValue());
             index++;
         }//for setString
 
@@ -98,6 +102,7 @@ public class Connect{
         System.out.println("\nSELEÇÃO DE TODOS OS USUÁRIOS");
 
         String query = "", name = "", cpf = "", stack = "";
+        Integer age = 0;
         Statement st = con.createStatement();
         ResultSet rs = null;
 
@@ -110,7 +115,8 @@ public class Connect{
             name = rs.getString("tb_users_name");
             cpf = rs.getString("tb_users_cpf");
             stack = rs.getString("tb_users_stack");
-            System.out.println("[" + cpf +  "," + name + "," + stack + "]");
+            age = rs.getInt("tb_users_age");
+            System.out.println("[" + cpf +  "," + name + "," + stack + "," + age + "]");
         }
         rs.close();
         st.close();
@@ -123,7 +129,6 @@ public class Connect{
 
             Scanner sc = new Scanner(System.in);
             Integer op = 0;
-
             do{
                 System.out.println("\nDeseja realizar qual operação?\n1- INSERT\n2- DELETE\n3- UPDATE\n4- SELECT ALL\n5- SAIR\nOpção: "); op = sc.nextInt();
                 switch(op){

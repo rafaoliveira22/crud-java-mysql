@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Capitulo07_BD" />
+        <module name="poo-crud" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Cap07_BancoDeDados" target="20" />
+      <module name="simple-crud" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

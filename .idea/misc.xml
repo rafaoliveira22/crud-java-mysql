@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/Cap07_BancoDeDados/pom.xml" />
         <option value="$PROJECT_DIR$/Capitulo07_BD/pom.xml" />
+        <option value="$PROJECT_DIR$/poo-crud/pom.xml" />
       </list>
     </option>
   </component>
