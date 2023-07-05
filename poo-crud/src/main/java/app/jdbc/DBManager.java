@@ -3,10 +3,10 @@ package app.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DBManager {
-    private static final String DB_URL = "jdbc:mysql://localhost/database";
-    private static final String DB_USER = "";
-    private static final String DB_PASSWORD = "";
+public class DBManager{
+    private static final String DB_URL = "jdbc:mysql://localhost/cap07_bd";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "root";
     public static Connection getCon(){
         Connection con = null;
         try{
@@ -16,4 +16,4 @@ public class DBManager {
         }
         return con;
     }
-}
+} //DBManager{}

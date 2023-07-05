@@ -12,7 +12,7 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         Integer op = 0;
         do{
-            System.out.println("\nDeseja realizar qual operação?\n1- INSERT\n2- DELETE\n3- UPDATE\n4- SELECT ALL\n5- SAIR\nOpção: "); op = sc.nextInt();
+            System.out.println("\nDeseja realizar qual operação?\n1- INSERT\n2- DELETE\n3- UPDATE\n4- SELECT USER\n5- SAIR\nOpção: "); op = sc.nextInt();
             switch(op){
                 case Defines.INSERT_OPERATION:
                     //insert

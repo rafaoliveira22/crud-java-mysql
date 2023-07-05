@@ -27,6 +27,8 @@ public class UserDAO{
             pst.setInt(4, user.getAge());
             pst.executeUpdate();
 
+            System.out.println("userInserted: " + user);
+
         }catch(SQLException e){
             e.printStackTrace();
         }finally {
@@ -45,7 +47,7 @@ public class UserDAO{
         PreparedStatement pst = null;
         try{
             con = DBManager.getCon();
-            String query = "DELETE FROM tb_users WHERE tb_users = ?";
+            String query = "DELETE FROM tb_users WHERE tb_users_cpf = ?";
 
             pst = con.prepareStatement(query);
             pst.setString(1, user.getCpf());
@@ -120,11 +122,11 @@ public class UserDAO{
         try {
             con = DBManager.getCon();
             String query = "SELECT tb_users_cpf as cpf, tb_users_name as name, tb_users_stack as stack, tb_users_age as age " +
-                            "where tb_users_cpf = ?";
+                            "from tb_users where tb_users_cpf = ?";
 
             pst = con.prepareStatement(query);
             pst.setString(1, user.getCpf());
-            pst.executeUpdate();
+            rs = pst.executeQuery();
 
             if (rs.next()) {
                 userSelected = new User(rs.getString("cpf"), rs.getString("name"), rs.getString("stack"), rs.getInt("age"));
